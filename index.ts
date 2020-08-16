@@ -143,7 +143,7 @@ class Animator {
         }
     }
 
-    stoo() {
+    stop() {
         if (this.animated) {
             this.animated = false 
             clearInterval(this.interval)
@@ -213,5 +213,27 @@ class AxisCircleRot {
 
     startUpdating(cb : Function) {
         this.curr.startUpdating(cb)
+    }
+}
+
+class Renderer {
+    
+    acr : AxisCircleRot = new AxisCircleRot()
+    animator : Animator = new Animator()
+    
+    render(context : CanvasRenderingContext2D) {
+        this.acr.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.acr.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.acr.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
     }
 }
