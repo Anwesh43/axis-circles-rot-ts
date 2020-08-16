@@ -1,5 +1,3 @@
-import { sienna } from "color-name"
-
 const w : number = window.innerWidth 
 const h : number = window.innerHeight 
 const parts : number = 3 
@@ -55,9 +53,9 @@ class DrawingUtil {
 
     static drawAxisCirclesRot(context : CanvasRenderingContext2D, scale : number) {
         const sf : number = ScaleUtil.sinify(scale)
-        const sf1 : number = ScaleUtil.divideScale(sf, 0, parts)
-        const sf2 : number = ScaleUtil.divideScale(sf, 1, parts)
-        const sf3 : number = ScaleUtil.divideScale(sf, 2, parts)
+        const sf1 : number = ScaleUtil.divideScale(sf, 0, parts + 1)
+        const sf2 : number = ScaleUtil.divideScale(sf, 1, parts + 1)
+        const sf3 : number = ScaleUtil.divideScale(sf, 2, parts + 1)
         context.save()
         context.translate(w / 2, h / 2)
         context.rotate(sf3 * rot)
